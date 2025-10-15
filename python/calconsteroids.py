@@ -1,32 +1,34 @@
-try:
-    num_1 = float(input("Enter first number: "))
-except ValueError:
-    print("Invalid input. Please enter a numeric value.")
-    exit()
-try:
-    num_2 = float(input("Enter second number: "))
-except ValueError:
-    print("Invalid input. Please enter a numeric value.")
-    exit()
-operation = input("Enter operation (+, -, *, /, %): ")
-if operation == '+':
-    result = num_1+num_2
-    print(f"{num_1}+{num_2}={result}")
-elif operation == '-':
-    result = num_1-num_2
-    print(f"{num_1}-{num_2}={result}")
-elif operation == '*':
-    result = num_1*num_2
-    print(f"{num_1}*{num_2}={result}")
-elif operation == '/':
-    if num_2 == 0:
-        print("Error: Division by zero is not allowed.")
+def calculate(num1, num2, op):
+    if op == '+':
+        return num1 + num2
+    elif op == '-':
+        return num1 - num2
+    elif op == '*':
+        return num1 * num2
+    elif op == '/':
+        if num2 == 0:
+            return "Error: Division by zero is not allowed."
+        return num1 / num2
     else:
-        result = num_1/num_2
-        print(f"{num_1}/{num_2}={result}")
-elif operation == '%':
-    if num_2 == 0:
-        print("Error: Modulus by zero is not allowed.")
-    else:
-        result = num_1 % num_2
-        print(f"{num_1}%{num_2}={result}")
+        return "Error: Invalid operator. Please use +, -, *, or /."
+
+
+while True:
+    try:
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+    except ValueError:
+        print("Error: Invalid input. Please enter numeric values.")
+    print("Main menu"
+          "\n1. Addition (+)"
+          "\n2. Subtraction (-)"
+          "\n3. Multiplication (*)"
+          "\n4. Division (/)"
+          "\n5. Exit")
+    choice = input("Choose an operation (1-5): ")
+    result = calculate(
+        num1, num2, {'1': '+', '2': '-', '3': '*', '4': '/'} .get(choice, ''))
+    print("Result:", result)
+    if choice == '5':
+        print("Exiting the calculator")
+        break

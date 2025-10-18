@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 
 typedef struct userInput
@@ -19,18 +16,24 @@ int main(void)
     float sum = 0.0;
     int count = 0;
     float mean = 0.0;
-    float variance = 0.0;
-    float stddev = 0.0;
-
     while (true)
     {
         float input;
         printf("Enter a data point (or 'q' to quit): ");
         if (scanf("%f", &input) != 1)
         {
-            while (getchar() != '\n')
-                ;
-            break;
+            int c = getchar();
+            if (c == 'q')
+            {
+                break;
+            }
+            while (c != '\n' && c != EOF)
+            {
+                c = getchar();
+
+            }
+            printf("Invalid input, enter again or 'q' to quit.\n");
+            continue;
         }
 
         struct userInput *newNode = (struct userInput *)malloc(sizeof(struct userInput));

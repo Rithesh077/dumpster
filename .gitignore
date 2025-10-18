@@ -1,0 +1,6 @@
+.vscode/
+dynamic_stat_calc
+*.exe
+*.o
+*.out
+*.obj
